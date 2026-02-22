@@ -23,12 +23,18 @@ func NewHoard() *Hoard {
 
 // Zombies returns the details of leaked goroutines.
 func (h *Hoard) Zombies() []string {
+	if h.prof == nil {
+		return nil
+	}
 	time.Sleep(2 * time.Second)
 	var buf strings.Builder
 	h.prof.WriteTo(&buf, 2)
 	leaked := slices.DeleteFunc(strings.Split(buf.String(), "\n\n"), func(s string) bool {
 		return !strings.Contains(s, "(leaked)")
 	})
+	if leaked == nil {
+		leaked = []string{}
+	}
 	for i, l := range leaked {
 		leaked[i] = strings.TrimSpace(l)
 	}
