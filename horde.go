@@ -11,18 +11,18 @@ import (
 	"time"
 )
 
-// Hoard is a goroutineleak profile handle.
-type Hoard struct {
+// Horde is a goroutineleak profile handle.
+type Horde struct {
 	prof *pprof.Profile
 }
 
-// NewHoard returns an undead hoard.
-func NewHoard() *Hoard {
-	return &Hoard{prof: pprof.Lookup("goroutineleak")}
+// NewHorde returns an undead horde.
+func NewHorde() *Horde {
+	return &Horde{prof: pprof.Lookup("goroutineleak")}
 }
 
 // Zombies returns the details of leaked goroutines.
-func (h *Hoard) Zombies() []string {
+func (h *Horde) Zombies() []string {
 	if h.prof == nil {
 		return nil
 	}

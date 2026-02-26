@@ -2,8 +2,8 @@ package undead
 
 import "testing"
 
-func TestHoard(t *testing.T) {
-	h := NewHoard()
+func TestHorde(t *testing.T) {
+	h := NewHorde()
 	defer func() {
 		z := h.Zombies()
 		if len(z) != 1 {
